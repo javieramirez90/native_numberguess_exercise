@@ -1,13 +1,38 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, Image } from 'react-native';
+
+import BodyText from '../components/BodyText';
+import TitleText from '../components/TitleText';
+import MainButton from '../components/MainButton';
+import Colors from '../constants/colors';
 
 const GameOverScreen = props => {
   return (
     <View style={styles.screen}>
-      <Text>The Game is Over!</Text>
-      <Text>Number of rounds: {props.roundsNumber}</Text>
-      <Text>Number was: {props.userNumber}</Text>
-      <Button title="NEW GAME" onPress={props.startNewGame}/>
+      <TitleText>The Game is Over!</TitleText>
+      <View style={styles.imageContainer}>
+        <Image
+        fadeDuration={1000}
+        // LOCAL
+          source={require('../assets/success.png')}
+        // WEB
+          // source={{uri: "https://miro.medium.com/max/5000/1*QqoS6WsjG6WSr9-BFFQhbA.jpeg"}}
+          style={styles.image}
+          resizeMode="stretch"
+        />
+      </View>
+      <View style={styles.resultContainer}>
+      <BodyText style={styles.resultText}>
+        I needed {' '}
+        <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds
+        to guess the number {' '}
+        <Text style={styles.highlight}>{props.userNumber}</Text>
+      </BodyText>
+      </View>
+
+      <MainButton onPress={props.startNewGame}>
+        NEW GAME
+      </MainButton>
     </View>
     )
 };
@@ -15,8 +40,33 @@ const GameOverScreen = props => {
 const styles =  StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center'
+  },
+  imageContainer: {
+    width: 300,
+    height: 300,
+    borderRadius: 200,
+    borderWidth: 3,
+    borderColor: 'black',
+    overflow: 'hidden'
+
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 50
+  },
+  highlight: {
+    color: Colors.primary,
+    fontFamily: 'open-sans-bold',
+  },
+  resultContainer: {
+    marginHorizontal: 30
+  },
+  resultText: {
+    textAlign: 'center',
+    fontSize: 20
   }
 });
 
