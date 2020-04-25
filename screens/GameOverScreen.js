@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 
 import BodyText from '../components/BodyText';
@@ -43,7 +43,6 @@ const GameOverScreen = props => {
         </MainButton>
       </View>
     </ScrollView>
-
     )
 };
 
